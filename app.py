@@ -40,8 +40,11 @@ if choice == "Upload":
 
 if choice == "Profiling":
     st.title("Exploratory Data Analysis Report")
-    profile = ProfileReport(df)
-    st_profile_report(profile)
+    if os.path.exists("SourceData.feather"):
+        df = pd.read_feather("SourceData.feather")  # Read DataFrame from Feather file
+        profile = ProfileReport(df)
+        st_profile_report(profile)
+
 
 
 if choice == 'ML':
